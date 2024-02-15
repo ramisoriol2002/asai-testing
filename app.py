@@ -141,4 +141,4 @@ def generate_response(user_input, user_context, assistant_context):
 if __name__ == '__main__':
     # Utiliza la variable de entorno proporcionada por Heroku para el puerto
     port = int(os.environ.get('PORT', 5000))
-    app.run(debug=True, port=port)
+    app.run(debug=False, port=port)
