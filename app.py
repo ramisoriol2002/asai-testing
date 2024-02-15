@@ -16,24 +16,16 @@ CORS(app)  # Habilita CORS para la aplicación
 
 openai.api_key = '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'  # Reemplaza con tu clave de API de OpenAI
 
-def text_to_speech(text, language='es', speed=200, filename='response.mp3', voice=1):
-    # Crear un objeto de la clase TextToSpeech
+import base64
+
+def text_to_speech(text, language='es', speed=200, voice=1):
     engine = pyttsx3.init()
-
-    # Configurar la velocidad del habla
     engine.setProperty('rate', speed)
-
     voices = engine.getProperty('voices')
-    engine.setProperty('voice', voices[0].id)      # Change index to change voice. 0 for male and 1 for female
-
-    # Configurar el idioma (opcional, dependiendo de tu configuración)
-    engine.setProperty('voice', f'{language}')
-
-    # Guardar el audio en un archivo
-    engine.save_to_file(text, filename)
-
-    # Ejecutar la conversión de texto a voz
+    engine.setProperty('voice', voices[voice].id)
+    engine.save_to_buffer(text, 'mp3')
     engine.runAndWait()
+    return base64.b64encode(engine.get_buffer()).decode('utf-8')
 
 
 
