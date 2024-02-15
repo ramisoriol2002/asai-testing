@@ -1,0 +1,214 @@
+/* Agrega esto al final de tu archivo style.css */
+
+@font-face {
+    font-family: 'Overcame Demo';
+    src: url('Fonts/overcame-demo.bold-italic.ttf') format('truetype');
+}
+
+:root {
+    --eye-size: 20vmin;  /* Ajusta el tamaño de los ojos */
+    --eye-gap: 6vmin;   /* Ajusta la separación entre los ojos */
+    --face-size: 50vmin;  /* Ajusta el tamaño de la cara */
+    --background: black;
+}
+
+body {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-family: Arial, sans-serif;
+    color: white;
+    overflow: hidden;
+    background-color: black;
+}
+
+
+.face-container {
+    margin: 30px;
+    width: var(--face-size);
+    height: var(--face-size);
+    display: grid;
+    place-items: center;
+    background: var(--background);
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(-5%);
+        }
+        50% {
+            transform: translateY(5%);
+        }
+    }
+}
+
+.face {
+    display: grid;
+    grid-template-columns: var(--eye-size) var(--eye-gap) var(--eye-size);
+    grid-template-rows: var(--eye-size);
+    grid-template-areas: "left . right";
+    filter: blur(1vmin) contrast(8);
+    transform: translateZ(8vmin) rotateX(var(--face-rotation-x)) rotateY(var(--face-rotation-y)) rotateZ(var(--face-rotation-z));
+    transition: .75s cubic-bezier(.25, .5, .5, 1);
+    mix-blend-mode: lighten;
+}
+
+.eye {
+    position: relative;
+    background: white;
+    border-radius: 100%;
+    overflow: hidden;
+    box-shadow: 0 0 0 1vmin black;
+    &, * {
+        transition: .5s cubic-bezier(0.75, 0.25, 0.25, 0.75);
+    }
+    >div {
+        --rotation: 0deg;
+        --position: 0%;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        transform: rotate(var(--rotation));
+        .lid {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background:  black;
+        }
+        &.lower .lid {
+            top: calc(100% - var(--position));
+        }
+        &.upper .lid {
+            bottom: calc(100% - var(--position));
+        }
+    }
+    &.left {
+        grid-area: left;
+        .lower {
+            --rotation: var(--left-lower-rotation);
+            --position: var(--left-lower-position);
+        }
+        .upper {
+            --rotation: var(--left-upper-rotation);
+            --position: var(--left-upper-position);
+        }
+    }
+    &.right {
+        grid-area: right;
+        .lower {
+            --rotation: var(--right-lower-rotation);
+            --position: var(--right-lower-position);
+        }
+        .upper {
+            --rotation: var(--right-upper-rotation);
+            --position: var(--right-upper-position);
+        }
+    }
+}
+
+.search-container {
+    position: fixed;
+    bottom: 200px;
+    left: 0;
+    width: 100%;
+    padding: 10px;
+    background-color: black;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 5px;
+    background-color: black;
+    width: calc(100% - 70px);
+}
+
+
+.search-bar {
+    flex: 1; /* Haz que la barra de búsqueda ocupe todo el espacio disponible */
+    padding: 10px;
+    font-size: 16px;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid white;
+    margin-right: 2px; /* Agrega un margen derecho para separar el botón */
+    margin-left: 15px;
+}
+
+.search-button {
+    width: 70px;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: black;
+    color: white;
+    border-radius: 10px;
+    border: 2px solid white;
+    text-align: center;
+}
+
+
+
+/* Aplica negrita al contenido entre corchetes */
+.bold-brackets {
+    font-weight: bold;
+}
+
+/* Estiliza el enlace HTML */
+.link-style {
+    color: #007BFF; /* Cambia el color del enlace según tus preferencias */
+    text-decoration: none;
+    font-weight: bold; /* Puedes ajustar el peso de la fuente según tus preferencias */
+}
+
+.link-style:hover {
+    text-decoration: none; /* Cambia la decoración del enlace al pasar el ratón sobre él */
+}
+
+.respuesta-container {
+    max-height: 70%;
+    overflow-y: auto;
+    padding: 10px;
+}
+
+
+/* Agrega estas clases al final de tu archivo style.css */
+.user-message {
+    background-color: white;
+    color: black;
+    font-weight: bold;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 8px;
+  }
+
+.assistant-message {
+    background-color: black;
+    color: white;
+    padding: 8px;
+    margin: 5px 0;
+    border-radius: 8px;
+  }
+
+.user-message a,
+.assistant-message a {
+    color: #007BFF; /* Color de enlaces dentro de los mensajes */
+    text-decoration: underline; /* Decoración de enlaces dentro de los mensajes */
+  }
+
+
+
+.chat-container {
+    max-width: 100%;
+    max-height: 70%;
+}

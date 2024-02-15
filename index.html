@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
+
+<script>
+
+       document.addEventListener("DOMContentLoaded", function () {
+            const states = {
+                neutral: {
+                    face: {
+                        rotationX: 0,
+                        rotationY: 0,
+                        rotationZ: 0
+                    },
+                    left: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 0
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 0
+                        }
+                    }
+                },
+                feliz: {
+                    face: {
+                        rotationX: 0,
+                        rotationY: 0,
+                        rotationZ: 0
+                    },
+                    left: {
+                        lower: {
+                            rotation: 20,
+                            position: 40
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 0
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: -20,
+                            position: 40
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 0
+                        }
+                    }
+                },
+                triste: {
+                    face: {
+                        rotationX: 0,
+                        rotationY: 0,
+                        rotationZ: 0
+                    },
+                    left: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: -20,
+                            position: 40
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: 20,
+                            position: 40
+                        }
+                    }
+                },
+                durmiendo: {
+                    face: {
+                        rotationX: -10,
+                        rotationY: 0,
+                        rotationZ: 0
+                    },
+                    left: {
+                        lower: {
+                            rotation: 0,
+                            position: 45
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 37
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: 0,
+                            position: 45
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 37
+                        }
+                    }
+                },
+                enfadado: {
+                    face: {
+                        rotationX: -10,
+                        rotationY: 0,
+                        rotationZ: 0
+                    },
+                    left: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: 20,
+                            position: 40
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: -20,
+                            position: 40
+                        }
+                    }
+                },
+                confundido: {
+                    face: {
+                        rotationX: 0,
+                        rotationY: 0,
+                        rotationZ: 0
+                    },
+                    left: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 40
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 0
+                        }
+                    }
+                },
+                sospechoso: {
+                    face: {
+                        rotationX: 0,
+                        rotationY: 0,
+                        rotationZ: 0
+                    },
+                    left: {
+                        lower: {
+                            rotation: -4,
+                            position: 20
+                        },
+                        upper: {
+                            rotation: 4,
+                            position: 20
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: 4,
+                            position: 20
+                        },
+                        upper: {
+                            rotation: -4,
+                            position: 20
+                        }
+                    }
+                },
+                dolor: {
+                    face: {
+                        rotationX: 0,
+                        rotationY: 0,
+                        rotationZ: 0
+                    },
+                    left: {
+                        lower: {
+                            rotation: 10,
+                            position: 20
+                        },
+                        upper: {
+                            rotation: -10,
+                            position: 20
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: -10,
+                            position: 20
+                        },
+                        upper: {
+                            rotation: 10,
+                            position: 20
+                        }
+                    }
+                },
+                rallado: {
+                    face: {
+                        rotationX: 0,
+                        rotationY: 0,
+                        rotationZ: 0
+                    },
+                    left: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 40
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 40
+                        }
+                    }
+                },
+                inseguro: {
+                    face: {
+                        rotationX: 0,
+                        rotationY: 0,
+                        rotationZ: 7
+                    },
+                    left: {
+                        lower: {
+                            rotation: 10,
+                            position: 20
+                        },
+                        upper: {
+                            rotation: -10,
+                            position: 20
+                        }
+                    },
+                    right: {
+                        lower: {
+                            rotation: 0,
+                            position: 0
+                        },
+                        upper: {
+                            rotation: 0,
+                            position: 0
+                        }
+                    }
+                }
+            };
+
+            const keywords = {
+                feliz: ["animos", "mejor", "bien", "hola", "feliz", "contento", "alegre", "radiante", "exultante", "jubiloso", "sonriente", "gozoso", "eufórico", "extasiado", "encantado", "animado", "entusiasmado", "alborozado", "satisfecho", "afortunado", "optimista", "regocijado", "risueño", "festejando", "regocijo", "jovial", "espléndido", "grato", "bienaventurado", "sorprendido", "fascinado", "agradecido", "lozano", "luminoso", "vibrante", "resplandeciente", "estático", "jocundo", "delirante", "triunfante", "exuberante", "glorioso", "bendecido", "afortunado", "satisfecho", "reverente", "esplendoroso", "extático", "exultante", "afortunado", "triunfante", "bienestar"],
+                triste: ["mal", "malas", "guerra", "triste", "melancólico", "deprimido", "apenado", "desolado", "abatido", "desconsolado", "desesperanzado", "sombrío", "abrumado", "penoso", "taciturno", "desdichado", "lúgubre", "melanco", "dolorido", "meloso", "sentimental", "nostálgico", "desalentado", "consternado", "desanimado", "desolado", "desamparado", "desolado", "lamentable", "abatido", "desesperado", "sosegado", "amargado", "apático", "lúgubre", "angustiado", "derrotado", "compungido", "agraviado", "afligido", "quebrantado", "pesaroso", "penitente", "quebrantado", "apocado", "sufriente", "decaído", "sin ánimo", "penoso", "lastimoso", "entristecido", "derrotado", "abatido"],
+                durmiendo: ["dormido", "descansando", "relajado", "reposo", "soñando", "acurrucado", "plácido", "sosegado", "tranquilo", "sereno", "reposado", "adormecido", "pacífico", "calmado", "sosegado", "reposado", "zalamería", "quieto", "inmóvil", "soporífero", "insomne", "yacente", "letárgico", "letargo", "soñoliento", "arrullado", "cómodo", "descansado", "sosegado", "entumecido", "plácidamente", "doliente", "apacible", "casi inconsciente", "aletargado", "plácidamente", "trance", "semiconsciente", "sueño", "lentamente", "inconsciente", "sin sueños", "moribundo", "sensación de paz", "deliciosamente", "somnoliento", "quieto", "descanso reparador", "aletargado", "entumecido"],
+                enfadado: ["enojado", "irritado", "molesto", "furioso", "indignado", "exasperado", "inflamado", "enojado", "irritado", "bravo", "irascible", "resentido", "injuriado", "beligerante", "colérico", "furibundo", "inflamado", "ardiente", "hostil", "desafiante", "acalorado", "frustrado", "furioso", "furibundo", "exaltado", "furioso", "irritado", "irascible", "ardiente", "enfurecido", "sulfuroso", "exacerbado", "colérico", "iracundo", "belicoso", "irritable", "injuriado", "indignado", "furibundo", "furioso", "resentido", "inflamado", "abrasado", "ardiente", "agresivo", "ardiente", "hostil", "furioso", "injuriado", "ardiente", "caliente", "furioso"],
+                confundido: ["hola", "confundido", "perdido", "desorientado", "atónito", "perplejo", "desconcertado", "estupefacto", "perdido", "desubicado", "despistado", "aturdido", "confuso", "perdido", "enredado", "asombrado", "atónito", "asombrado", "pasmado", "boquiabierto", "estupefacto", "aturdido", "aturdido", "sorprendido", "perdido", "atónito", "perplejo", "desconcertado", "asombrado", "sorprendido", "atónito", "pasmado", "boquiabierto", "desconcertado", "perplejo", "desorientado", "aturdido", "asombrado", "asustado", "extrañado", "confuso", "perplejo", "sorprendido", "confundido", "desorientado", "desconcertado", "despistado", "asombrado", "atónito", "pasmado", "estupefacto"],
+                sospechoso: ["sospechoso", "desconfiado", "escéptico", "cauteloso", "paranoico", "inquisitivo", "incrédulo", "desconfiado", "dudoso", "paranoide", "sospechoso", "escudriñador", "vigilante", "alerta", "desconfiado", "atento", "cauto", "precavido", "reservado", "paranoico", "aprensivo", "desconfiado", "vigilante", "incrédulo", "desconfiado", "sospechoso", "desconfiado", "dudoso", "escéptico", "paranoide", "desconfiado", "sospechoso", "reservado", "incrédulo", "cauteloso", "paranoico", "alerta", "desconfiado", "desconfiado", "sospechoso", "vigilante", "dudoso", "paranoico", "incrédulo", "aprensivo", "desconfiado", "sospechoso", "cauteloso", "paranoico"],
+                dolor: ["dolorido", "adolorido", "agobiado", "angustiado", "sufriendo", "penoso", "lacerado", "sufrimiento", "angustia", "torturado", "martirizado", "doloroso", "agonizante", "lamentable", "congojado", "herido", "afligido", "aflicción", "duelo", "aflicción", "doloroso", "lacerante", "apenado", "doliente", "martirio", "sufrimiento", "congoja", "tortura", "penuria", "padecimiento", "dolor", "congojoso", "angustioso", "lamento", "sufrido", "lúgubre", "apenado", "dolencia", "calvario", "lamentoso", "tristeza", "aflicción", "tortura", "pena", "aflicción", "dolor", "quebrantado", "conmovedor", "quebranto"],
+                rallado: ["rallado", "preocupado", "ansioso", "inquieto", "agitado", "intranquilo", "agitado", "intrigado", "nervioso", "agitado", "inquieto", "preocupado", "ansioso", "intrigado", "tenso", "agitado", "nervioso", "inquieto", "preocupado", "agitado", "intrigado", "ansioso", "agitado", "inquieto", "nervioso", "preocupado", "intrigado", "agitado", "ansioso", "nervioso", "agitado", "intranquilo", "inquieto", "agitado", "ansioso", "nervioso", "preocupado", "intrigado", "agitado", "inquieto", "nervioso", "ansioso", "agitado", "intrigado", "preocupado", "inquieto", "nervioso", "agitado"],
+                inseguro: ["inseguro", "vacilante", "indeciso", "dudoso", "temeroso", "incómodo", "aprensivo", "titubeante", "inseguro", "desconfiado", "aprensivo", "intranquilo", "reservado", "tembloroso", "nervioso", "inseguro", "incómodo", "titubeante", "desconfiado", "vacilante", "temeroso", "inquieto", "aprensivo", "inseguro", "titubeante", "dudoso", "intranquilo", "incómodo", "temeroso", "nervioso", "vacilante", "inseguro", "aprensivo", "tembloroso", "desconfiado", "titubeante", "dudoso", "reservado", "inseguro", "vacilante", "tembloroso", "nervioso", "inquieto", "desconfiado", "titubeante", "aprensivo", "temeroso"]
+                // Puedes agregar más palabras de ejemplo según sea necesario
+            };
+
+
+        const setState = (state) => {
+            console.log(state);
+            if (states[state] == undefined) return;
+            $(".face").attr("style", `
+                --left-lower-rotation:${states[state].left.lower.rotation}deg;
+                --left-lower-position:${states[state].left.lower.position}%;
+                --left-upper-rotation:${states[state].left.upper.rotation}deg;
+                --left-upper-position:${states[state].left.upper.position}%;
+                --right-lower-rotation:${states[state].right.lower.rotation}deg;
+                --right-lower-position:${states[state].right.lower.position}%;
+                --right-upper-rotation:${states[state].right.upper.rotation}deg;
+                --right-upper-position:${states[state].right.upper.position}%;
+                --face-rotation-x:${states[state].face.rotationX}deg;
+                --face-rotation-y:${states[state].face.rotationY}deg;
+                --face-rotation-z:${states[state].face.rotationZ}deg;
+            `);
+        };
+
+        const setStateByGeneratedText = (generatedText) => {
+            for (const [emotion, emotionKeywords] of Object.entries(keywords)) {
+                if (emotionKeywords.some(keyword => generatedText.toLowerCase().includes(keyword))) {
+                    console.log(`Found keyword for emotion ${emotion}: ${keyword}`);
+                    setState(emotion);
+                    return;
+                }
+            }
+            console.log('No keyword found for emotions');
+        };
+
+        document.addEventListener("DOMContentLoaded", function () {
+            // Establecer la emoción inicial, por ejemplo, "durmiendo"
+            const initialEmotion = "durmiendo";
+            setState(initialEmotion);
+
+            // Llamada inicial a setStateByGeneratedText con una respuesta de ejemplo
+            const gpt3Response = "La respuesta generada por GPT-3";
+            setStateByGeneratedText(gpt3Response);
+
+            // Puedes llamar a setStateByGeneratedText con la respuesta real de GPT-3 cuando la recibas
+            // Por ejemplo, después de realizar una solicitud AJAX a GPT-3
+
+            // Modifica la función sendUserInput para manejar el TTS actual
+            const sendUserInput = () => {
+                var userInput = document.getElementById("user-input").value;
+                appendMessage("user", userInput);
+                document.getElementById("user-input").value = "";
+
+                // Detener y quitar el reproductor de audio anterior, si existe
+                if (audioPlayer) {
+                    audioPlayer.pause();
+                    audioPlayer.parentNode.removeChild(audioPlayer);
+                }
+
+                // Enviar la pregunta a la aplicación Flask
+                fetch('http://127.0.0.1:5000/ask', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                    },
+                    mode: 'cors',  // Habilita CORS en la solicitud
+                    body: JSON.stringify({ user_input: userInput }),
+                })
+                .then(response => response.json())
+                .then(data => {
+                    // Mostrar la respuesta en el chat
+                    appendMessage("assistant", data.response);
+
+                    // Crear un nuevo reproductor de audio
+                    audioPlayer = document.createElement("audio");
+                    audioPlayer.id = "audio-player-" + audioCount; // Identificador único
+                    audioCount++;
+                    audioPlayer.controls = true;
+                    audioPlayer.style.display = "none";
+
+                    // Añadir fuente al nuevo reproductor de audio
+                    var audioSource = document.createElement("source");
+                    audioSource.id = "audio-source";
+                    audioSource.type = "audio/mpeg";
+                    audioSource.src = data.audio + "?t=" + new Date().getTime(); // Identificador único de caché
+
+                    // Adjuntar el nuevo reproductor de audio al documento
+                    audioPlayer.appendChild(audioSource);
+                    document.body.appendChild(audioPlayer);
+
+                    // Reproducir el nuevo audio
+                    audioPlayer.play();
+
+                    // Cambiar los ojos basados en la respuesta de GPT-3
+                    setStateByGeneratedText(data.response);
+                })
+                .catch(error => {
+                    console.error('Error al enviar la pregunta:', error);
+                });
+            };
+
+            function sendMessage(event) {
+                if (event.key === "Enter") {
+                    sendUserInput();
+                }
+            }
+
+            function clearConversation() {
+                // Limpia la conversación y el contexto
+                document.getElementById("chat").innerHTML = "";
+                document.getElementById("response").innerHTML = "";
+            }
+        });
+</script>
+
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asistente Virtual</title>
+</head>
+<body>
+<script src="https://kit.fontawesome.com/3b8e0cd8f5.js" crossorigin="anonymous"></script>
+	        <div class="face-container">
+            <div class="face" style="--left-lower-rotation:20deg;--left-lower-position:40%;--left-upper-rotation:0deg;--left-upper-position:0%;--right-lower-rotation:-20deg;--right-lower-position:40%;--right-upper-rotation:0deg;--right-upper-position:0%;--face-rotation-x:0deg;--face-rotation-y:0deg;--face-rotation-z:0deg;">
+                <div class="eye left">
+                    <div class="lower">
+                        <div class="lid"></div>
+                    </div>
+                    <div class="upper">
+                        <div class="lid"></div>
+                    </div>
+                </div>
+                <div class="eye right">
+                    <div class="lower">
+                        <div class="lid"></div>
+                    </div>
+                    <div class="upper">
+                        <div class="lid"></div>
+                    </div>
+                </div>
+            </div>
+            <audio id="audio-player" controls style="display: none;">
+    <source id="audio-source" type="audio/mpeg">
+    Your browser does not support the audio element.
+</audio>
+        <button class="search-button" onclick="clearConversation()">
+              <i class="fas fa-trash-alt"></i> 
+            </button>
+        </div>
+
+        <div id="search-container" class="chat-container">
+            <div id="chat" class="respuesta-container"></div>
+            <input type="text" id="user-input" placeholder="Escribe tu pregunta..." class="search-bar" onkeydown="sendMessage(event)">
+            <button class="search-button" onclick="sendUserInput()">
+              <i class="fa-solid fa-pen"></i>
+            </button>
+
+            
+
+        </div>
+
+    <script>
+         function appendMessage(role, content) {
+            var chat = document.getElementById("chat");
+            var messageDiv = document.createElement("div");
+
+            // Asigna la clase correspondiente al rol del mensaje
+            messageDiv.className = role === 'user' ? 'user-message' : 'assistant-message';
+
+            // Identificar enlaces en el texto y convertirlos en hipervínculos
+            var contentWithLinks = content.replace(/(https?:\/\/[^\s()]+)/g, function (url) {
+              return '<a href="' + url + '" target="_blank">' + url + '</a>';
+            });
+
+            // Asigna el contenido
+            messageDiv.innerHTML = contentWithLinks;
+
+            chat.appendChild(messageDiv);
+
+            // Scroll hacia abajo para mostrar el mensaje más reciente
+            chat.scrollTop = chat.scrollHeight;
+
+            // Si el mensaje es del asistente y contiene un audio
+            if (role === "assistant" && content.audio) {
+              // Muestra y reproduce el audio
+              var audioPlayer = document.getElementById("audio-player");
+              var audioSource = document.getElementById("audio-source");
+              audioSource.src = content.audio;
+              audioPlayer.style.display = "block";
+              audioPlayer.play();
+            }
+          }
+
+
+/// Agrega esta variable global al inicio del script
+var audioPlayer = null;
+var audioCount = 0; // Variable para generar identificadores únicos
+
+// Modifica la función sendUserInput() para manejar el TTS actual
+const sendUserInput = () => {
+    var userInput = document.getElementById("user-input").value;
+    appendMessage("user", userInput);
+    document.getElementById("user-input").value = "";
+
+    // Detener y quitar el reproductor de audio anterior, si existe
+    if (audioPlayer) {
+        audioPlayer.pause();
+        audioPlayer.parentNode.removeChild(audioPlayer);
+    }
+
+    // Enviar la pregunta a la aplicación Flask
+    fetch('http://127.0.0.1:5000/ask', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        mode: 'cors',  // Habilita CORS en la solicitud
+        body: JSON.stringify({ user_input: userInput }),
+    })
+    .then(response => response.json())
+    .then(data => {
+        // Mostrar la respuesta en el chat
+        appendMessage("assistant", data.response);
+
+        // Crear un nuevo reproductor de audio
+        audioPlayer = document.createElement("audio");
+        audioPlayer.id = "audio-player-" + audioCount; // Identificador único
+        audioCount++;
+        audioPlayer.controls = true;
+        audioPlayer.style.display = "none";
+
+        // Añadir fuente al nuevo reproductor de audio
+        var audioSource = document.createElement("source");
+        audioSource.id = "audio-source";
+        audioSource.type = "audio/mpeg";
+        audioSource.src = data.audio + "?t=" + new Date().getTime(); // Identificador único de caché
+
+        // Adjuntar el nuevo reproductor de audio al documento
+        audioPlayer.appendChild(audioSource);
+        document.body.appendChild(audioPlayer);
+
+        // Reproducir el nuevo audio
+        audioPlayer.play();
+
+        // Change the eyes based on GPT-3 response
+        setStateByGeneratedText(data.response);
+    })
+    .catch(error => {
+        console.error('Error al enviar la pregunta:', error);
+    });
+};
+
+
+
+
+
+
+        function sendMessage(event) {
+            if (event.key === "Enter") {
+                sendUserInput();
+            }
+        }
+
+        function clearConversation() {
+            // Limpia la conversación y el contexto
+            document.getElementById("chat").innerHTML = "";
+            document.getElementById("response").innerHTML = "";
+        }
+    </script>
+
+      
+</body>
+</html>
+
+
